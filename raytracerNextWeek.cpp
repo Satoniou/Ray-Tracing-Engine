@@ -8,6 +8,7 @@
 #include "sphere.h"
 #include "texture.h"
 
+// Image of spheres of different materials and sizes bouncing. Used to showcase motion blur and different materials.
 void bouncing_spheres()
 {
 	hittable_list world;
@@ -81,6 +82,7 @@ void bouncing_spheres()
 	cam.render(world);
 }
 
+// Image of two checkered spheres. Used to showcase objects with a checkered texture map.
 void checkered_spheres()
 {
 	hittable_list world;
@@ -109,6 +111,7 @@ void checkered_spheres()
 
 int main()
 {
+	// Determine which image to be rendered.
 	switch (2)
 	{
 	case 1:
