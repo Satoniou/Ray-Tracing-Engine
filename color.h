@@ -4,6 +4,7 @@
 #include "interval.h"
 #include "vec3.h"
 
+// Alias of vec3 class, to clarify when object represents a color vs a point
 using color = vec3;
 
 void write_color(std::ostream& out, const color& pixel_color)
