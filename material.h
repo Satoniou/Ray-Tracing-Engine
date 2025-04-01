@@ -72,9 +72,12 @@ public:
 		double cos_theta = std::fmin(dot(-unit_direction, rec.normal), 1.0);
 		double sin_theta = std::sqrt(1.0 - cos_theta * cos_theta);
 
+		// Ray cannot be refracted if it intersects the surface at an obtuse enough angle with the
+		// surface normal.
 		bool cannot_refract = ((ri * sin_theta) > 1.0);
 		vec3 direction;
 
+		// If ray cannot refract, it is reflected back to the same medium.
 		if (cannot_refract || (reflectance(cos_theta, ri) > random_double()))
 		{
 			direction = reflect(unit_direction, rec.normal);
