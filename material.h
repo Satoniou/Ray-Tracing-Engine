@@ -14,6 +14,7 @@ public:
 	}
 };
 
+// General opaque material
 class lambertian : public material {
 public:
 	lambertian(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
@@ -38,6 +39,7 @@ private:
 	shared_ptr<texture> tex;
 };
 
+// Metalic surface. Accounts for reflections
 class metal : public material {
 public:
 	metal(const color& albedo, double fuzz) : albedo(albedo), fuzz((fuzz < 1) ? fuzz : 1) {}
@@ -56,6 +58,7 @@ private:
 	double fuzz;
 };
 
+// Material at boundary of two mediums with different refraction indices (e.g. glass sphere).
 class dielectric : public material {
 public:
 	dielectric(double refraction_index) : refraction_index(refraction_index) {}
