@@ -3,6 +3,8 @@
 
 #include "vec3.h"
 
+// Ray class to detect when a surface can be viewed from the camera, and, if so, what color constitutes the pixel through
+// which the ray was casted.
 class ray {
 public:
 	ray() {}
