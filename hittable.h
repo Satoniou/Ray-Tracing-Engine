@@ -5,6 +5,8 @@
 
 class material;
 
+// A class to keep track of some data when an object is hit, such as the surface normal, whether we hit it from inside or
+// outside, and what the current material of the object is.
 class hit_record {
 	public:
 		point3 p;
@@ -25,6 +27,7 @@ class hit_record {
 		}
 };
 
+// General hittable object class. Inherited by other object classes.
 class hittable {
 	public:
 		virtual ~hittable() = default;
