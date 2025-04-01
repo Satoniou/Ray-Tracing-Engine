@@ -1,6 +1,8 @@
 #ifndef VEC3_H
 #define VEC3_H
 
+// Class for a general 3-dimensional vector, including basic methods for operating with other vectors and scalars, getting length,
+// reflecting, refracting and obtaining a random vector in different circumstances.
 class vec3 {
 public:
 	double e[3];
