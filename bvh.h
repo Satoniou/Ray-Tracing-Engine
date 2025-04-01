@@ -5,6 +5,7 @@
 #include "hittable.h"
 #include "hittable_list.h"
 
+// Class to define Bounding volume hierarchy (tree and nodes).
 class bvh_node : public hittable
 {
 public:
