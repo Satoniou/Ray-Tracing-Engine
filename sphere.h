@@ -3,6 +3,7 @@
 
 #include "hittable.h"
 
+// Class to create a sphere object. Inherits hittable and overrides hit method to detect intersection with a ray.
 class sphere : public hittable {
 	public:
 		// Stationary Sphere
@@ -13,7 +14,7 @@ class sphere : public hittable {
 			bbox = aabb(static_center - rvec, static_center + rvec);
 		}
 
-		// Moving Sphere
+		// Moving Sphere; motion blur
 		sphere(const point3& center1, const point3& center2, double radius, shared_ptr<material> mat)
 			: center(center1, center2 - center1), radius(std::fmax(0, radius)), mat(mat) 
 		{
