@@ -1,6 +1,7 @@
 #ifndef AABB_H
 #define AABB_H
 
+// Class for Axis-Aligned Bounding Boxes for optimizing the program
 class aabb {
 public:
 	interval x, y, z;
