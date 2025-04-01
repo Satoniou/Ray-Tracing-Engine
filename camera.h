@@ -4,6 +4,8 @@
 #include "hittable.h"
 #include "material.h"
 
+// The decision of creating a camera object is so we can pass inputs to the camera as attributes and generate the image from
+// the camera, instead of doing it explicitly in main()
 class camera
 {
 public:
