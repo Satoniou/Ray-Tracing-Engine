@@ -5,6 +5,7 @@
 
 #include <vector>
 
+// A list of all hittable objects in the scene
 class hittable_list : public hittable
 {
 public:
@@ -26,6 +27,7 @@ public:
 		bool hit_anything = false;
 		auto closest_so_far = ray_t.max;
 
+		// Iterate over all objects in objects and take the closest one
 		for (const auto& object : objects)
 		{
 			if (object->hit(r, interval(ray_t.min, closest_so_far), temp_rec))
