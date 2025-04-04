@@ -1,4 +1,4 @@
-﻿#include "rtweek.h"
+#include "rtweek.h"
 
 #include "bvh.h"
 #include "camera.h"
@@ -8,7 +8,6 @@
 #include "sphere.h"
 #include "texture.h"
 
-// Image of spheres of different materials and sizes bouncing. Used to showcase motion blur and different materials.
 void bouncing_spheres()
 {
 	hittable_list world;
@@ -67,8 +66,8 @@ void bouncing_spheres()
 	camera cam;
 
 	cam.aspect_ratio = 16.0 / 9.0;
-	cam.image_width = 400;
-	cam.samples_per_pixel = 100;
+	cam.image_width = 1200;
+	cam.samples_per_pixel = 500;
 	cam.max_depth = 50;
 
 	cam.vfov = 20;
@@ -82,7 +81,6 @@ void bouncing_spheres()
 	cam.render(world);
 }
 
-// Image of two checkered spheres. Used to showcase objects with a checkered texture map.
 void checkered_spheres()
 {
 	hittable_list world;
@@ -95,8 +93,8 @@ void checkered_spheres()
 	camera cam;
 
 	cam.aspect_ratio = 16.0 / 9.0;
-	cam.image_width = 400;
-	cam.samples_per_pixel = 100;
+	cam.image_width = 1200;
+	cam.samples_per_pixel = 500;
 	cam.max_depth = 50;
 
 	cam.vfov = 20;
@@ -109,16 +107,124 @@ void checkered_spheres()
 	cam.render(world);
 }
 
+void various_spheres() 
+{
+	hittable_list world;
+	
+	shared_ptr<metal> material1 = make_shared<metal>(color(0.05, 0.4, 0.3), 0.0);
+	shared_ptr<dielectric> material2 = make_shared<dielectric>(1.5);
+	shared_ptr<dielectric> material2_5 = make_shared<dielectric>(1 / 1.5);
+	shared_ptr<lambertian> material3 = make_shared<lambertian>(color(0.3, 0.05, 0.4));
+	shared_ptr<metal> material4 = make_shared<metal>(color(0.5, 0.5, 0.5), 0.0);
+	shared_ptr<metal> material5 = make_shared<metal>(color(0.3, 0.5, 0.1), 0.1);
+
+	shared_ptr<lambertian> ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
+
+	world.add(make_shared<sphere>(point3(-1, 1, 4), 1.0, material1));
+	world.add(make_shared<sphere>(point3(2, 1.5, 4), 1.5, material5));
+	world.add(make_shared<sphere>(point3(-2.4, 0.3, 3.6), 0.3, material3));
+	world.add(make_shared<sphere>(point3(-2.4, 0.3, 3.6), 0.3, material3));
+	world.add(make_shared<sphere>(point3(-7, 5.8, 20), 6.0, material4));
+	world.add(make_shared<sphere>(point3(-3, 2, 10), 2.0, material2));
+	world.add(make_shared<sphere>(point3(-3, 2, 10), 1.95, material2_5));
+	world.add(make_shared<sphere>(point3(-0.3, 0.6, 2), 0.6, material2));
+
+	world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material));
+
+	camera cam;
+
+	cam.aspect_ratio = 16.0 / 9.0;
+	cam.image_width = 1200;
+	cam.samples_per_pixel = 500;
+	cam.max_depth = 50;
+
+	cam.vfov = 30;
+	cam.lookfrom = point3(0, 2, -5);
+	cam.lookat = point3(0, 1.5, 0);
+	cam.vup = vec3(0, 1, 0);
+
+	cam.defocus_angle = 0;
+
+	cam.render(world);
+}
+
+
+void four_spheres()
+{
+	hittable_list world;
+
+	shared_ptr<lambertian> material1 = make_shared<lambertian>(color(0.1, 0.4, 0.3));
+	shared_ptr<lambertian> material2 = make_shared<lambertian>(color(0.5, 0.15, 0.7));
+	shared_ptr<lambertian> material3 = make_shared<lambertian>(color(0.7, 0.6, 0.5));
+	shared_ptr<lambertian> material4 = make_shared<lambertian>(color(1.0, 0.843, 0.0));
+
+	world.add(make_shared<sphere>(point3(1, 1, 5), 0.7, material1));
+	world.add(make_shared<sphere>(point3(1, -1, 5), 0.7, material2));
+	world.add(make_shared<sphere>(point3(-1, -1, 5), 0.7, material3));
+	world.add(make_shared<sphere>(point3(-1, 1, 5), 0.7, material4));
+
+	camera cam;
+
+	cam.aspect_ratio = 16.0 / 9.0;
+	cam.image_width = 1200;
+	cam.samples_per_pixel = 500;
+	cam.max_depth = 50;
+
+	cam.vfov = 40;
+	cam.lookfrom = point3(0, 1, 0);
+	cam.lookat = point3(0, 0, 5);
+	cam.vup = vec3(0, 1, 0);
+
+	cam.defocus_angle = 0;
+
+	cam.render(world);
+}
+
+void mirrored_spheres()
+{
+	hittable_list world;
+
+	shared_ptr<metal> material1 = make_shared<metal>(color(0.05, 0.4, 0.3), 0.0);
+	shared_ptr<metal> material2 = make_shared<metal>(color(0.5, 0.5, 0.5), 0.0);
+
+	world.add(make_shared<sphere>(point3(0, 0, 5), 3.0, material2));
+	world.add(make_shared<sphere>(point3(0, 0, -5), 3.0, material2));
+	
+	camera cam;
+
+	cam.aspect_ratio = 16.0 / 9.0;
+	cam.image_width = 400;
+	cam.samples_per_pixel = 100;
+	cam.max_depth = 50;
+
+	cam.vfov = 20;
+	cam.lookfrom = point3(0, 0, 0);
+	cam.lookat = point3(0, 0, 1);
+	cam.vup = vec3(0, 1, 0);
+
+	cam.defocus_angle = 0;
+
+	cam.render(world);
+}
+
 int main()
 {
-	// Determine which image to be rendered.
-	switch (2)
+	switch (3)
 	{
 	case 1:
 		bouncing_spheres();
 		break;
 	case 2:
 		checkered_spheres();
+		break;
+	case 3:
+		various_spheres();
+		break;
+	case 4:
+		four_spheres();
+		break;
+	case 5:
+		mirrored_spheres();
 		break;
 	default:
 		break;
