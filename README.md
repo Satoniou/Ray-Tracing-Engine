@@ -1,7 +1,7 @@
 # Ray-Tracing-Engine
 Ray Tracing engine with basic materials
 
-This repository includes the code and images of a basic Ray Tracing Engine made form scratch. This project is being developed by following the book series [Ray Tracing in One Weekend](https://raytracing.github.io/).
+This repository includes the code and images of a basic Ray Tracing Engine made from scratch. This project is being developed by following the book series [Ray Tracing in One Weekend](https://raytracing.github.io/).
 
 ![Bouncing balls image - sample image](https://github.com/Satoniou/Ray-Tracing-Engine/blob/main/Images/bouncing_balls.png)
 
